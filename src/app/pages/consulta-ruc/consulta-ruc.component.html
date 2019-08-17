@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+          <ul class="text-center list-inline py-3">
+            <!-- <li class="list-inline-item"><a routerLink="/consulta-ruc" class="btn btn-info">ConsultaRuc</a></li> -->
+            <!-- <li class="list-inline-item"><a routerLink="/logout" class="btn btn-info">Logout</a></li> -->
+            <button (click)="logout()" class="btn btn-danger">Salir</button>
+          </ul>
+        </div>
+      </div>
+      <div class="card my-5">
+        <div class="card-body">
+          <form class="form">
+            <div class="form-group">
+              <input type="number" (keypress)="numberOnly($event)" class="form-control"
+                placeholder="Ingrese RUC a consultar..."
+                [(ngModel)]="rucConsultado" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group" style="text-align: center;">
+              <button [disabled]="isLoading" (click)="consultarRuc()" class="btn btn-primary btn-xs" >{{labelButton}}</button>
+            </div>
+          </form>
+
+          <ng-container *ngIf="showInfo">
+              <div class="card mb-4 shadow-sm">
+                  <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ruc.razon_social}}</h4>
+                  </div>
+                  <div class="card-body">
+                    <!-- <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1> -->
+                    <ul class="list-unstyled mt-3 mb-4">
+                      <li> <strong>Estado:</strong> {{ruc.estado}} </li>
+                      <li> <strong>Direcci&oacute;n:</strong> {{ruc.direccion}} </li>
+                      <li> <strong>Ubigeo:</strong> {{ruc.ubigeo}} </li>
+                      <li> <strong>Departamento:</strong> {{ruc.departamento}} </li>
+                      <li> <strong>Provincia:</strong> {{ruc.provincia}} </li>
+                      <li> <strong>Distrito:</strong> {{ruc.distrito}} </li>
+                    </ul>
+                    <button (click)="nuevaBusqueda()" type="button" class="btn btn-lg btn-block btn-outline-primary">Nueva Busqueda</button>
+                  </div>
+                </div>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
